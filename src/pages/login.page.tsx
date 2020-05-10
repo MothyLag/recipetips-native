@@ -11,10 +11,7 @@ export const LoginPage = ({ navigation }: ILoginProps) => {
   return (
     <SafeAreaView>
       <View style={styles.body}>
-        <StatusBar
-        backgroundColor="black"
-        barStyle="light-content"
-        />
+        <StatusBar hidden/>
         <Tile
           imageSrc={require('../img/intro.jpg')}
           title="Bienvenido a RecipeTips"
@@ -49,6 +46,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'black',
   },
+  
 
 
 });
