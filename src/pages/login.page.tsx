@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet } from 'react-native';
+import { SafeAreaView, View, StyleSheet, StatusBar, } from 'react-native';
 import { Tile, Button } from 'react-native-elements';
 import { LoginForm } from '../components/loginForm/loginForm';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -11,9 +11,14 @@ export const LoginPage = ({ navigation }: ILoginProps) => {
   return (
     <SafeAreaView>
       <View style={styles.body}>
+        <StatusBar
+        backgroundColor="black"
+        barStyle="light-content"
+        />
         <Tile
-          imageSrc={require('../img/recipe.jpeg')}
+          imageSrc={require('../img/intro.jpg')}
           title="Bienvenido a RecipeTips"
+          titleStyle={styles.title}
           featured
           caption="El mejor lugar para tu comida"
         />
@@ -39,5 +44,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%'
-  }
+  },
+  
+  title: {
+    color: 'black',
+  },
+
+
 });

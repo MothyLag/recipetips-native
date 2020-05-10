@@ -22,7 +22,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator 
+        initialRouteName="Login" 
+        screenOptions={{headerShown: false}}
+        >
           <Stack.Screen name="Login" component={LoginPage} />
           <Stack.Screen name="signUp" component={SignUp} />
         </Stack.Navigator>
