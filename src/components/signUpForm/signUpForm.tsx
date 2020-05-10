@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Formik } from 'formik';
@@ -6,12 +6,29 @@ import { signUpSchema } from './signUp.schema';
 import DatePicker from 'react-native-datepicker';
 import { signUpInitialValues } from './signUp.initialValues';
 import { ISignUpData } from './signUp.types';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { ADD_USER } from '../../mutations/createUser.mutation';
+import { GET_DOGS } from '../../querys/login.query';
 export const SignUpForm = () => {
+  const [addUser, { data, error }] = useMutation(ADD_USER);
+  const { data: helloData } = useQuery(GET_DOGS);
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
   return (
     <Formik
       initialValues={signUpInitialValues}
-      onSubmit={(data: ISignUpData) => {
-        console.log(data);
+      onSubmit={(dataForm: ISignUpData) => {
+        const newUser = {
+          userName: dataForm.userName,
+          password: dataForm.password,
+          email: dataForm.email
+        };
+        addUser({
+          variables: { user: { ...newUser } }
+        })
+          .then(data => console.log(data))
+          .catch(error => console.log(error));
       }}
       validationSchema={signUpSchema}
     >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, } from 'react-native';
+import { SafeAreaView, View, StyleSheet, StatusBar } from 'react-native';
 import { Tile, Button } from 'react-native-elements';
 import { LoginForm } from '../components/loginForm/loginForm';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -42,11 +42,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%'
   },
+<<<<<<< HEAD
   
   title: {
     color: 'black',
   },
   
 
+=======
+>>>>>>> a06f520a4ca9c2b93249c5a64290e9d160d74414
 
+  title: {
+    color: 'black'
+  }
 });
