@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { yupToFormErrors } from 'formik';
 export const signUpSchema = Yup.object().shape({
   userName: Yup.string()
     .min(7, 'El nombre de usuario debe tener minimo 7 caractéres')
@@ -11,5 +12,8 @@ export const signUpSchema = Yup.object().shape({
     .required('este campo es requerido'),
   rePassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'las contraseñas no coinciden')
-    .required('este campo es requerido')
+    .required('este campo es requerido'),
+  birthDay: Yup.string(),
+  name: Yup.string().required('favor de llenar este campo'),
+  ocupation: Yup.string()
 });

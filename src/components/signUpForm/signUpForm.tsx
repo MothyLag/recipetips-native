@@ -3,7 +3,7 @@ import { Input, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Formik } from 'formik';
 import { signUpSchema } from './signUp.schema';
-
+import DatePicker from 'react-native-datepicker';
 import { signUpInitialValues } from './signUp.initialValues';
 import { ISignUpData } from './signUp.types';
 export const SignUpForm = () => {
@@ -25,6 +25,14 @@ export const SignUpForm = () => {
       }) => (
         <>
           <Input
+            placeholder="Nombre"
+            leftIcon={<Icon name="user" />}
+            errorMessage={errors.name}
+            value={values.name}
+            onChangeText={handleChange('name')}
+            onBlur={() => setFieldTouched('name')}
+          />
+          <Input
             placeholder="Nombre de Usuario"
             leftIcon={<Icon name="user" />}
             errorMessage={errors.userName}
@@ -39,6 +47,20 @@ export const SignUpForm = () => {
             value={values.email}
             onChangeText={handleChange('email')}
             onBlur={() => setFieldTouched('email')}
+          />
+          <DatePicker
+            date={values.birthDay}
+            format="DD-MM-YYYY"
+            onDateChange={handleChange('birthDay')}
+            placeholder="cual es tu fecha de nacimiento?"
+          />
+          <Input
+            placeholder="Ocupación"
+            leftIcon={<Icon name="user" />}
+            errorMessage={errors.occupation}
+            value={values.occupation}
+            onChangeText={handleChange('occupation')}
+            onBlur={() => setFieldTouched('occupation')}
           />
           <Input
             placeholder="Contraseña"
