@@ -14,7 +14,7 @@ import { client } from './src/apolloClient';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginPage } from './src/pages/login.page';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text } from 'react-native';
+
 import { SignUp } from './src/pages/signUp.page';
 declare var global: { HermesInternal: null | {} };
 const Stack = createStackNavigator();
@@ -22,9 +22,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
-        <Stack.Navigator 
-        initialRouteName="Login" 
-        screenOptions={{headerShown: false}}
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login" component={LoginPage} />
           <Stack.Screen name="signUp" component={SignUp} />

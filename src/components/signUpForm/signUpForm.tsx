@@ -6,15 +6,12 @@ import { signUpSchema } from './signUp.schema';
 import DatePicker from 'react-native-datepicker';
 import { signUpInitialValues } from './signUp.initialValues';
 import { ISignUpData } from './signUp.types';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../../mutations/createUser.mutation';
-import { GET_DOGS } from '../../querys/login.query';
+import { Text, Alert } from 'react-native';
+
 export const SignUpForm = () => {
-  const [addUser, { data, error }] = useMutation(ADD_USER);
-  const { data: helloData } = useQuery(GET_DOGS);
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
+  const [addUser, { loading }] = useMutation(ADD_USER);
   return (
     <Formik
       initialValues={signUpInitialValues}
@@ -28,7 +25,7 @@ export const SignUpForm = () => {
           variables: { user: { ...newUser } }
         })
           .then(data => console.log(data))
-          .catch(error => console.log(error));
+          .catch(error => Alert.alert(error.message.split(':')[1]));
       }}
       validationSchema={signUpSchema}
     >
@@ -65,6 +62,7 @@ export const SignUpForm = () => {
             onChangeText={handleChange('email')}
             onBlur={() => setFieldTouched('email')}
           />
+          <Text>Fecha de Nacimiento</Text>
           <DatePicker
             date={values.birthDay}
             format="DD-MM-YYYY"
@@ -103,6 +101,7 @@ export const SignUpForm = () => {
             disabled={!isValid}
             buttonStyle={{ justifyContent: 'center' }}
             onPress={handleSubmit}
+            loading={loading}
           />
         </>
       )}
