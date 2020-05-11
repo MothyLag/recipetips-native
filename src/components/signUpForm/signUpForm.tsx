@@ -19,12 +19,13 @@ export const SignUpForm = () => {
     <Formik
       initialValues={signUpInitialValues}
       onSubmit={(dataForm: ISignUpData) => {
+        const newUser = {
+          userName: dataForm.userName,
+          password: dataForm.password,
+          email: dataForm.email
+        };
         addUser({
-          variables: {
-            userName: dataForm.userName,
-            password: dataForm.password,
-            email: dataForm.email
-          }
+          variables: { user: { ...newUser } }
         })
           .then(data => console.log(data))
           .catch(error => console.log(error));
