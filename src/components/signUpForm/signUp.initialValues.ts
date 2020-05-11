@@ -1,1 +1,6 @@
-export const signUpInitialValues = {};
+export const signUpInitialValues = {
+  userName: '',
+  email: '',
+  password: '',
+  rePassword: ''
+};
