@@ -2,7 +2,6 @@ import React from 'react';
 import { SafeAreaView, View, StyleSheet, StatusBar } from 'react-native';
 import { Tile, Button } from 'react-native-elements';
 import { LoginForm } from '../components/loginForm/loginForm';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationProp } from '@react-navigation/native';
 interface ILoginProps {
   navigation: NavigationProp<any>;

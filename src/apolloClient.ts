@@ -5,7 +5,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { AsyncStorage } from 'react-native';
 
 const httpLink = createHttpLink({
-  uri: 'http://192.168.0.6:4000/'
+  //uri: 'http://192.168.0.6:4000/'
+  uri: 'https://recipetips.herokuapp.com/'
 });
 
 const authLink = setContext((_: any, { headers }: any) => {
