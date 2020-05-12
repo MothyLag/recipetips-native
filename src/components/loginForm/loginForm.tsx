@@ -8,10 +8,19 @@ import { loginInitialValues } from './loginForm.initialValues';
 import { loginFormSchema } from './loginForm.schema';
 import { ILoginData } from './loginForm.types';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useDispatch } from 'react-redux';
+import { ACTION_LOG_IN } from '../../utils/actions.consts';
 
 export const LoginForm = () => {
   const [logIn, { data, error, loading }] = useLazyQuery(LOG_IN);
-  useEffect(() => {}, [data]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data != undefined) {
+      AsyncStorage.setItem('token', data.login.token);
+      dispatch({ type: ACTION_LOG_IN });
+    }
+  }, [data]);
   useEffect(() => {
     if (error && error.message != '')
       Alert.alert(error.message.split(':')[1].split('-')[0]);

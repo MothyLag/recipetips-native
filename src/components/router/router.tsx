@@ -2,20 +2,27 @@ import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginPage } from '../../pages/login.page';
 import { SignUp } from '../../pages/signUp.page';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { IAppState } from '../../utils/state.types';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { HomePage } from '../..//pages/home.page';
+import AsyncStorage from '@react-native-community/async-storage';
+import { ACTION_LOG_IN } from '../../utils/actions.consts';
 
 export const RouterComponent = () => {
   const Stack = createStackNavigator();
   const Drawer = createDrawerNavigator();
+  const dispatch = useDispatch();
   const isLogged = useSelector<IAppState, boolean>(
     state => state.session.isLogged
   );
   useEffect(() => {
-    console.log(isLogged);
-  }, [isLogged]);
+    AsyncStorage.getItem('token')
+      .then(res => {
+        if (res != null) dispatch({ type: ACTION_LOG_IN });
+      })
+      .catch(error => console.log(error));
+  }, []);
   if (!isLogged) {
     return (
       <Stack.Navigator

@@ -12,9 +12,6 @@ interface IHomeProps {
 }
 
 export const HomePage = ({ navigation }: IHomeProps) => {
-  useEffect(() => {
-    navigation.openDrawer();
-  });
   return (
     <SafeAreaView>
       <View>

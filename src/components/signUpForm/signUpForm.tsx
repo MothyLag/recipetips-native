@@ -9,9 +9,23 @@ import { ISignUpData } from './signUp.types';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../../mutations/createUser.mutation';
 import { Text, Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useDispatch } from 'react-redux';
+import { ACTION_LOG_IN } from '../../utils/actions.consts';
 
 export const SignUpForm = () => {
-  const [addUser, { loading }] = useMutation(ADD_USER);
+  const [addUser, { loading, data, error }] = useMutation(ADD_USER);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data != undefined) {
+      AsyncStorage.setItem('token', data.createUser.token);
+      dispatch({ type: ACTION_LOG_IN });
+    }
+  }, [data]);
+  useEffect(() => {
+    console.log(error);
+    if (error && error.message != '') Alert.alert(error.message.split(':')[1]);
+  }, [error]);
   return (
     <Formik
       initialValues={signUpInitialValues}
@@ -23,9 +37,7 @@ export const SignUpForm = () => {
         };
         addUser({
           variables: { user: { ...newUser } }
-        })
-          .then(data => console.log(data))
-          .catch(error => Alert.alert(error.message.split(':')[1]));
+        }).catch(error => Alert.alert(error.message.split(':')[1]));
       }}
       validationSchema={signUpSchema}
     >
