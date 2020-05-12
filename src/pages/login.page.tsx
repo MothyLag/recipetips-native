@@ -6,6 +6,7 @@ import { NavigationProp } from '@react-navigation/native';
 interface ILoginProps {
   navigation: NavigationProp<any>;
 }
+
 export const LoginPage = ({ navigation }: ILoginProps) => {
   return (
     <SafeAreaView>

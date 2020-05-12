@@ -8,7 +8,7 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { client } from './src/apolloClient';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,20 +16,20 @@ import { LoginPage } from './src/pages/login.page';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { SignUp } from './src/pages/signUp.page';
+import { createStore } from 'redux';
+import { rootReducer } from './src/store/index.store';
+import { Provider } from 'react-redux';
+import { RouterComponent } from './src/components/router/router';
 declare var global: { HermesInternal: null | {} };
-const Stack = createStackNavigator();
+let store = createStore(rootReducer());
 const App = () => {
   return (
     <NavigationContainer>
-      <ApolloProvider client={client}>
-        <Stack.Navigator
-          initialRouteName="Login"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Login" component={LoginPage} />
-          <Stack.Screen name="signUp" component={SignUp} />
-        </Stack.Navigator>
-      </ApolloProvider>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <RouterComponent />
+        </ApolloProvider>
+      </Provider>
     </NavigationContainer>
   );
 };
