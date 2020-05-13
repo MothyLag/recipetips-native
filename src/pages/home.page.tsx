@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import { CustomHeader } from '../components/header/header';
 
 interface INavigationDrawer extends NavigationProp<any> {
   openDrawer: () => void;
@@ -13,9 +14,9 @@ interface IHomeProps {
 
 export const HomePage = ({ navigation }: IHomeProps) => {
   return (
-      <ScrollView>
+    <ScrollView>
+      <CustomHeader navigation={navigation} />
       <Text>Hello madafacka</Text>
-      </ScrollView>
+    </ScrollView>
   );
 };
-
