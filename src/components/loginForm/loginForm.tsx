@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Input, Button } from 'react-native-elements';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { LOG_IN } from '../../querys/login.query';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Formik } from 'formik';
@@ -38,11 +38,17 @@ export const LoginForm = () => {
         <>
           <Input
             placeholder="Nombre de Usuario"
-            placeholderTextColor= 'white'
-            leftIcon={<Icon name="user" color= 'white' size={20}/>}
-            inputStyle={{color: 'white', fontSize: 20,}}
-            inputContainerStyle={{borderBottomWidth:0}}
-            containerStyle={{ backgroundColor:'rgba(0,0,0,0.7)', borderRadius: 10, width: 400, height: 50,margin: 5 }}
+            placeholderTextColor="white"
+            leftIcon={<Icon name="user" color="white" size={20} />}
+            inputStyle={{ color: 'white', fontSize: 20 }}
+            inputContainerStyle={{ borderBottomWidth: 0 }}
+            containerStyle={{
+              backgroundColor: 'rgba(0,0,0,0.7)',
+              borderRadius: 10,
+              width: 400,
+              height: 50,
+              margin: 5
+            }}
             value={values.user}
             errorMessage={errors.user}
             onChangeText={handleChange('user')}
@@ -51,11 +57,17 @@ export const LoginForm = () => {
           <Input
             placeholder="Contraseña"
             secureTextEntry={true}
-            placeholderTextColor= 'white'
-            inputStyle={{color: 'white', fontSize: 20,}}
-            inputContainerStyle={{borderBottomWidth:0}}
-            containerStyle={{ backgroundColor:'rgba(0,0,0,0.7)', borderRadius: 10, width: 400, height: 50,margin: 5 }}
-            leftIcon={<Icon name="lock" color= 'white' size={20}/>}
+            placeholderTextColor="white"
+            inputStyle={{ color: 'white', fontSize: 20 }}
+            inputContainerStyle={{ borderBottomWidth: 0 }}
+            containerStyle={{
+              backgroundColor: 'rgba(0,0,0,0.7)',
+              borderRadius: 10,
+              width: 400,
+              height: 50,
+              margin: 5
+            }}
+            leftIcon={<Icon name="lock" color="white" size={20} />}
             value={values.password}
             errorMessage={errors.password}
             onChangeText={handleChange('password')}
@@ -64,11 +76,19 @@ export const LoginForm = () => {
           <Button
             title="Entrar"
             loading={loading}
+            raised={true}
             type="solid"
-            titleStyle={{ color: 'black', fontSize: 18, }}
-            containerStyle={{ borderRadius: 10, margin: 10, shadowColor: 'black',
-            shadowOpacity: 0.58, elevation: 24, shadowRadius: 16, shadowOffset : { width: 0, height: 12}, }}
-            buttonStyle={{ height: 50, width: 150 , backgroundColor: 'white', }}
+            titleStyle={{ color: 'black', fontSize: 18 }}
+            containerStyle={{
+              borderRadius: 10,
+              margin: 10,
+              shadowColor: 'black',
+              shadowOpacity: 0.58,
+              elevation: 24,
+              shadowRadius: 16,
+              shadowOffset: { width: 0, height: 12 }
+            }}
+            buttonStyle={{ height: 50, width: 150, backgroundColor: 'white' }}
             onPress={handleSubmit}
           />
         </>

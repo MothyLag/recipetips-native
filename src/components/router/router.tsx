@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginPage } from '../../pages/login.page';
 import { SignUp } from '../../pages/signUp.page';
@@ -9,6 +9,7 @@ import { HomePage } from '../../pages/home.page';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ACTION_LOG_IN } from '../../utils/actions.consts';
 import { CustomDrawer } from '../drawer/drawer';
+import { Text } from 'react-native';
 
 export const RouterComponent = () => {
   const Stack = createStackNavigator();
@@ -17,13 +18,18 @@ export const RouterComponent = () => {
   const isLogged = useSelector<IAppState, boolean>(
     state => state.session.isLogged
   );
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     AsyncStorage.getItem('token')
       .then(res => {
         if (res != null) dispatch({ type: ACTION_LOG_IN });
+        setLoading(false);
       })
       .catch(error => console.log(error));
   }, []);
+  if (loading) {
+    return <Text>Cargando...</Text>;
+  }
   if (!isLogged) {
     return (
       <Stack.Navigator

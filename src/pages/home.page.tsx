@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { CustomHeader } from '../components/header/header';
+import { Text, colors } from 'react-native-elements';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 interface INavigationDrawer extends NavigationProp<any> {
   openDrawer: () => void;
@@ -13,9 +16,29 @@ interface IHomeProps {
 
 export const HomePage = ({ navigation }: IHomeProps) => {
   return (
-      <ScrollView>
-      <Text>Hello madafacka</Text>
-      </ScrollView>
+    <View style={styles.srcollView}>
+      <CustomHeader navigation={navigation} />
+      {[].length < 1 ? (
+        <View style={styles.emptyItems}>
+          <Text h4 style={{ color: 'grey' }}>
+            No tienes ninguna Despensa
+          </Text>
+        </View>
+      ) : null}
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  srcollView: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  emptyItems: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
