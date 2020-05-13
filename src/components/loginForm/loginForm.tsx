@@ -38,7 +38,11 @@ export const LoginForm = () => {
         <>
           <Input
             placeholder="Nombre de Usuario"
-            leftIcon={<Icon name="user" />}
+            placeholderTextColor= 'white'
+            leftIcon={<Icon name="user" color= 'white' size={20}/>}
+            inputStyle={{color: 'white', fontSize: 20,}}
+            inputContainerStyle={{borderBottomWidth:0}}
+            containerStyle={{ backgroundColor:'rgba(0,0,0,0.7)', borderRadius: 10, width: 400, height: 50,margin: 5 }}
             value={values.user}
             errorMessage={errors.user}
             onChangeText={handleChange('user')}
@@ -47,7 +51,11 @@ export const LoginForm = () => {
           <Input
             placeholder="Contraseña"
             secureTextEntry={true}
-            leftIcon={<Icon name="lock" />}
+            placeholderTextColor= 'white'
+            inputStyle={{color: 'white', fontSize: 20,}}
+            inputContainerStyle={{borderBottomWidth:0}}
+            containerStyle={{ backgroundColor:'rgba(0,0,0,0.7)', borderRadius: 10, width: 400, height: 50,margin: 5 }}
+            leftIcon={<Icon name="lock" color= 'white' size={20}/>}
             value={values.password}
             errorMessage={errors.password}
             onChangeText={handleChange('password')}
@@ -57,7 +65,8 @@ export const LoginForm = () => {
             title="Entrar"
             loading={loading}
             type="solid"
-            buttonStyle={{ justifyContent: 'center', width: 1000 }}
+            containerStyle={{ backgroundColor: '#4388D6', color: '#fff', textAlign: 'center', borderRadius: 10, height: 50, width: 100 , textAlignVertical: 'center' }}
+            buttonStyle={{   }}
             onPress={handleSubmit}
           />
         </>

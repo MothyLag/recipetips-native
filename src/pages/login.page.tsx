@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 100,
   },
 
   logo: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: 'rgba(0,0,0,0.2)',
     borderWidth: 16,
-    margin: 60,
+    margin: 70,
   },
 
   background: {
