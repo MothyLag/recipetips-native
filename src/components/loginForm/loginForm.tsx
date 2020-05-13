@@ -65,8 +65,10 @@ export const LoginForm = () => {
             title="Entrar"
             loading={loading}
             type="solid"
-            containerStyle={{ backgroundColor: '#4388D6', color: '#fff', textAlign: 'center', borderRadius: 10, height: 50, width: 100 , textAlignVertical: 'center' }}
-            buttonStyle={{   }}
+            titleStyle={{ color: 'black', fontSize: 18, }}
+            containerStyle={{ borderRadius: 10, margin: 10, shadowColor: 'black',
+            shadowOpacity: 0.58, elevation: 24, shadowRadius: 16, shadowOffset : { width: 0, height: 12}, }}
+            buttonStyle={{ height: 50, width: 150 , backgroundColor: 'white', }}
             onPress={handleSubmit}
           />
         </>
