@@ -5,9 +5,11 @@ import {
   StatusBar,
   Image,
   Text,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import { LoginForm } from '../components/loginForm/loginForm';
 import { NavigationProp } from '@react-navigation/native';
 interface ILoginProps {
@@ -25,16 +27,50 @@ export const LoginPage = ({ navigation }: ILoginProps) => {
         <Image source={require('../img/intro.png')} style={styles.logo} />
         <Text style={styles.title}>Bienvenido a RecipeTips</Text>
         <LoginForm />
-        <Button
-          title="Registrarse"
-          type="solid"
-          buttonStyle={{
-            justifyContent: 'center',
-            width: 1000,
-            backgroundColor: 'green'
-          }}
-          onPress={() => navigation.navigate('signUp')}
-        />
+        <Grid style={{margin: 50, backgroundColor: 'transparent', width: 250, height: 50}}>
+            <Col size={12}>
+            <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
+              <Text style={{textAlign: 'center', margin: 7 , fontSize: 20, color: 'white', textShadowColor: 'black',
+    textShadowOffset: { width: 1 , height: 1 },
+    textShadowRadius: 1, }}>
+                Registrate
+              </Text>
+            </TouchableOpacity>
+            </Col>
+            <Col>
+              <Text style={{textAlign: 'center', fontSize: 25, color: 'white', fontWeight: 'bold', textShadowColor: 'black',
+    textShadowOffset: { width: -0.1 , height: 0.5 },
+    textShadowRadius: 1,}}>
+                |
+              </Text>
+            </Col>
+            <Col size={13}>
+            <TouchableOpacity onPress={() => (alert('En construcción'))}>
+              <Text style={{textAlign: 'center', textAlignVertical: 'center', margin: 2, fontSize: 16, color: 'white', textShadowColor: 'black',
+    textShadowOffset: { width: 1 , height: 1 },
+    textShadowRadius: 1, }}>
+                ¿Se te olvido la contraseña?
+              </Text>
+            </TouchableOpacity>
+            </Col>
+          </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </View>
     </ImageBackground>
   );
