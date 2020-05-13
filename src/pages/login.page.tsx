@@ -21,7 +21,7 @@ export const LoginPage = ({ navigation }: ILoginProps) => {
       source={require('../img/fondo.jpg')}
     >
       <View style={styles.body}>
-        <StatusBar hidden />
+        <StatusBar backgroundColor= '#8fe5da' />
         <Image source={require('../img/intro.png')} style={styles.logo} />
         <Text style={styles.title}>Bienvenido a RecipeTips</Text>
         <LoginForm />
@@ -49,10 +49,15 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: 'black',
-    fontSize: 45,
+    color: '#262626',
+    textShadowColor: 'silver',
+    textShadowOffset: { width: -1 , height: 1 },
+    textShadowRadius: 1,
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 10,
+    fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
   },
 
   logo: {
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: 'rgba(0,0,0,0.2)',
     borderWidth: 16,
-    margin: 60
+    margin: 60,
   },
 
   background: {

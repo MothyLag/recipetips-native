@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, StyleSheet, ScrollView } from 'react-native';
 
 interface INavigationDrawer extends NavigationProp<any> {
   openDrawer: () => void;
@@ -13,10 +13,9 @@ interface IHomeProps {
 
 export const HomePage = ({ navigation }: IHomeProps) => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Hola</Text>
-      </View>
-    </SafeAreaView>
+      <ScrollView>
+      <Text>Hello madafacka</Text>
+      </ScrollView>
   );
 };
+
