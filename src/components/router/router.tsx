@@ -5,9 +5,10 @@ import { SignUp } from '../../pages/signUp.page';
 import { useSelector, useDispatch } from 'react-redux';
 import { IAppState } from '../../utils/state.types';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { HomePage } from '../..//pages/home.page';
+import { HomePage } from '../../pages/home.page';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ACTION_LOG_IN } from '../../utils/actions.consts';
+import { CustomDrawer } from '../drawer/drawer';
 
 export const RouterComponent = () => {
   const Stack = createStackNavigator();
@@ -35,7 +36,10 @@ export const RouterComponent = () => {
     );
   } else {
     return (
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator
+        initialRouteName="Home"
+        drawerContent={props => <CustomDrawer {...props} />}
+      >
         <Drawer.Screen name="Home" component={HomePage} />
       </Drawer.Navigator>
     );
