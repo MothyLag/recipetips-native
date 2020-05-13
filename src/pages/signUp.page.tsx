@@ -1,20 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Tile, Button } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 import { SignUpForm } from '../components/signUpForm/signUpForm';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export const SignUp = () => {
   return (
-    <SafeAreaView>
-      <ScrollView style={styles.body}>
-        <Tile
-          imageSrc={require('../img/recipe.jpeg')}
-          title="Bienvenido a RecipeTips"
-          featured
-          caption="El mejor lugar para tu comida"
-        />
+    <View style={styles.body}>
+      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
+        <Text style={styles.title}>SingUp</Text>
         <SignUpForm />
         <Button
           title="Registrarse"
@@ -24,8 +20,8 @@ export const SignUp = () => {
             backgroundColor: 'green'
           }}
         />
-      </ScrollView>
-    </SafeAreaView>
+        </LinearGradient>
+      </View>
   );
 };
 const styles = StyleSheet.create({
@@ -33,5 +29,19 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'column',
     width: '100%'
-  }
+  },
+
+  title: {
+    color: '#262626',
+    textShadowColor: 'silver',
+    textShadowOffset: { width: -1 , height: 1 },
+    textShadowRadius: 1,
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 10,
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 100,
+  },
+
+
 });
