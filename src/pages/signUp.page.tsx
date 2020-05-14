@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import { View, StyleSheet, Text } from 'react-native';
-=======
-import { StyleSheet } from 'react-native';
->>>>>>> 9c15bf032c6064d3ea2a7b1b12dae4d9fd0b00c7
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Tile, Button } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,7 +13,10 @@ interface ISignUpProps {
 export const SignUp = ({ navigation }: ISignUpProps) => {
   return (
     <View style={styles.body}>
-      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
+      <LinearGradient
+        colors={['#4c669f', '#3b5998', '#192f6a']}
+        style={styles.linearGradient}
+      >
         <Text style={styles.title}>SingUp</Text>
         <SignUpForm />
         <Button
@@ -28,8 +27,8 @@ export const SignUp = ({ navigation }: ISignUpProps) => {
             backgroundColor: 'green'
           }}
         />
-        </LinearGradient>
-      </View>
+      </LinearGradient>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -42,14 +41,12 @@ const styles = StyleSheet.create({
   title: {
     color: '#262626',
     textShadowColor: 'silver',
-    textShadowOffset: { width: -1 , height: 1 },
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 1,
     backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: 10,
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 100,
-  },
-
-
+    marginBottom: 100
+  }
 });

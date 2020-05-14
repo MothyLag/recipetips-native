@@ -84,13 +84,8 @@ export const LoginPage = ({ navigation }: ILoginProps) => {
                 ¿Se te olvido la contraseña?
               </Text>
             </TouchableOpacity>
-<<<<<<< HEAD
-            </Col>
-          </Grid>
-=======
           </Col>
         </Grid>
->>>>>>> 9c15bf032c6064d3ea2a7b1b12dae4d9fd0b00c7
       </View>
     </ImageBackground>
   );
