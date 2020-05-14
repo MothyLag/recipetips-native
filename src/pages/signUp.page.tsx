@@ -13,10 +13,7 @@ interface ISignUpProps {
 export const SignUp = ({ navigation }: ISignUpProps) => {
   return (
     <View style={styles.body}>
-      <LinearGradient
-        colors={['#4c669f', '#3b5998', '#192f6a']}
-        style={styles.linearGradient}
-      >
+      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}>
         <Text style={styles.title}>SingUp</Text>
         <SignUpForm />
         <Button
