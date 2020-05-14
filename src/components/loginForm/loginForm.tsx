@@ -76,6 +76,7 @@ export const LoginForm = () => {
           <Button
             title="Entrar"
             loading={loading}
+            raised={true}
             type="solid"
             titleStyle={{ color: 'black', fontSize: 18 }}
             containerStyle={{

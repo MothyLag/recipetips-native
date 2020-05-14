@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Tile, Button } from 'react-native-elements';
 import { SignUpForm } from '../components/signUpForm/signUpForm';
 import { ScrollView } from 'react-native-gesture-handler';
+import { NavigationProp } from '@react-navigation/native';
 
-export const SignUp = () => {
+interface ISignUpProps {
+  navigation: NavigationProp<any>;
+}
+export const SignUp = ({ navigation }: ISignUpProps) => {
   return (
     <SafeAreaView>
       <ScrollView style={styles.body}>
