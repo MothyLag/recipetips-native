@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions, Alert } from 'react-native';
 import { CustomHeader } from '../components/header/header';
-import { Text, colors } from 'react-native-elements';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Card } from 'react-native-elements';
+import Modal from 'react-native-modal';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface INavigationDrawer extends NavigationProp<any> {
   openDrawer: () => void;
@@ -14,31 +16,51 @@ interface IHomeProps {
   navigation: INavigationDrawer;
 }
 
+const screenWidth = Math.round(Dimensions.get('window').width);
 export const HomePage = ({ navigation }: IHomeProps) => {
   return (
-    <View style={styles.srcollView}>
+    <View style={styles.wrapper}>
       <CustomHeader navigation={navigation} />
-      {[].length < 1 ? (
-        <View style={styles.emptyItems}>
-          <Text h4 style={{ color: 'grey' }}>
-            No tienes ninguna Despensa
-          </Text>
-        </View>
-      ) : null}
+      <View style={styles.content}>
+        <Card containerStyle={styles.addCard}>
+          <Icon
+            name="plus"
+            size={50}
+            color="white"
+            onPress={() => Alert.alert('hola')}
+          />
+        </Card>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  srcollView: {
+  wrapper: {
     height: '100%',
-    alignItems: 'center',
     justifyContent: 'center'
   },
-  emptyItems: {
+  content: {
     height: '100%',
     width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  card: {
+    width: screenWidth / 3 - 11,
+    height: screenWidth / 3 - 11,
+    margin: 5
+  },
+  addCard: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: screenWidth / 3 - 11,
+    height: screenWidth / 3 - 11,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderColor: 'white',
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderRadius: 1,
+    margin: 5
   }
 });

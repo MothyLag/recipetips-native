@@ -9,7 +9,7 @@ import { HomePage } from '../../pages/home.page';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ACTION_LOG_IN } from '../../utils/actions.consts';
 import { CustomDrawer } from '../drawer/drawer';
-import { Text } from 'react-native';
+import { Text, StatusBar } from 'react-native';
 
 export const RouterComponent = () => {
   const Stack = createStackNavigator();
@@ -42,12 +42,15 @@ export const RouterComponent = () => {
     );
   } else {
     return (
-      <Drawer.Navigator
-        initialRouteName="Home"
-        drawerContent={props => <CustomDrawer {...props} />}
-      >
-        <Drawer.Screen name="Home" component={HomePage} />
-      </Drawer.Navigator>
+      <>
+        <StatusBar backgroundColor="#8fe5da" />
+        <Drawer.Navigator
+          initialRouteName="Home"
+          drawerContent={props => <CustomDrawer {...props} />}
+        >
+          <Drawer.Screen name="Home" component={HomePage} />
+        </Drawer.Navigator>
+      </>
     );
   }
 };
