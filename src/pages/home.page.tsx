@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { View, StyleSheet, Dimensions, Alert } from 'react-native';
-import { CustomHeader } from '../components/header/header';
-import { Card } from 'react-native-elements';
 import Modal from 'react-native-modal';
+import { CustomHeader } from '../components/header/header';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useMutation } from '@apollo/react-hooks';
+import { CREATE_DESPENSA } from '../mutations/createDespensa.mutation';
+import { Card, Text } from 'react-native-elements';
+import { CreateDespensaForm } from '../components/createDespensaForm/createDespensaForm';
 interface INavigationDrawer extends NavigationProp<any> {
   openDrawer: () => void;
   closeDrawer: () => void;
@@ -18,18 +21,26 @@ interface IHomeProps {
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 export const HomePage = ({ navigation }: IHomeProps) => {
+  const [showModal, setShowModal] = useState(false);
+  const createDespensa = useMutation(CREATE_DESPENSA);
+  const toogleModal = () => setShowModal(!showModal);
   return (
     <View style={styles.wrapper}>
+      <Modal isVisible={showModal} onBackdropPress={toogleModal}>
+        <View style={{ flex: 1 }}>
+          <Card>
+            <Text h3>Agregar despensa</Text>
+            <CreateDespensaForm />
+          </Card>
+        </View>
+      </Modal>
       <CustomHeader navigation={navigation} />
       <View style={styles.content}>
-        <Card containerStyle={styles.addCard}>
-          <Icon
-            name="plus"
-            size={50}
-            color="white"
-            onPress={() => Alert.alert('hola')}
-          />
-        </Card>
+        <TouchableOpacity style={styles.addCard} onPress={toogleModal}>
+          <View>
+            <Icon name="plus" size={50} color="white" />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
