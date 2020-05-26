@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Input, Button, SearchBar } from 'react-native-elements';
+import React, { useState } from 'react';
+import { Input, Button, SearchBar, Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Formik } from 'formik';
 import { createDespensaValues } from './createDespensaForm.initialValues';
@@ -8,15 +8,23 @@ import { ICreateDespensaData } from './createDespensaForm.types';
 import { useDispatch } from 'react-redux';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCH_INGREDIENTS } from '../../querys/getIngredientsByName.query';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text, View, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, Alert, TouchableOpacity, View } from 'react-native';
 
 export const CreateDespensaForm = () => {
-  const dispatch = useDispatch();
   const [searchText, setSearchText] = useState('');
+  const [showItemList, setShowItemList] = useState(false);
   const [searchIngredients, { error, data, loading }] = useLazyQuery(
     SEARCH_INGREDIENTS
   );
+
+  interface IIngredient {
+    _id: string;
+    name: string;
+    standardPrice: number;
+    description: string;
+  }
+
   return (
     <Formik
       onSubmit={(dataForm: ICreateDespensaData) => {
@@ -25,14 +33,7 @@ export const CreateDespensaForm = () => {
       initialValues={createDespensaValues}
       validationSchema={createDespensaFormSchema}
     >
-      {({
-        handleSubmit,
-        errors,
-        setFieldValue,
-        handleChange,
-        setFieldTouched,
-        values
-      }) => (
+      {({ handleSubmit, errors, handleChange, setFieldTouched, values }) => (
         <>
           <Input
             placeholder="Nombre de la despensa"
@@ -50,24 +51,34 @@ export const CreateDespensaForm = () => {
             onChangeText={async newText => {
               await setSearchText(newText);
               await searchIngredients({ variables: { name: newText } });
+              if (newText) setShowItemList(true);
+              else setShowItemList(false);
             }}
-            // onChangeText={() => {
-            //   searchIngredients({ variables: { name: values.name } });
-            //   //setFieldValue('items', ['hola']);
-            // }}
           />
-          <View style={styles.dropMenu}>
-            <TouchableOpacity style={styles.dropItem}>
-              <Text>Data1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.dropItem}>
-              <Text>Data2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.dropItem}>
-              <Icon name="plus" color="grey" />
-              <Text>Crear ingrediente</Text>
-            </TouchableOpacity>
-          </View>
+          {showItemList && data != null ? (
+            <ScrollView style={styles.dropMenu}>
+              {data.getIngredientByName.length > 0 ? (
+                data.getIngredientByName.map((ingredient: IIngredient) => {
+                  return (
+                    <TouchableOpacity
+                      style={styles.dropItem}
+                      onPress={() => Alert.alert(ingredient.name)}
+                    >
+                      <Text>{ingredient.name}</Text>
+                    </TouchableOpacity>
+                  );
+                })
+              ) : (
+                <View style={styles.dropItem}>
+                  <Text>No se encontró ninguna coincidencia</Text>
+                </View>
+              )}
+              <TouchableOpacity style={styles.dropItem}>
+                <Icon name="plus" color="grey" />
+                <Text style={{ marginLeft: 10 }}>Crear ingrediente</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          ) : null}
 
           <Button title="Entrar" type="solid" onPress={handleSubmit} />
         </>
@@ -80,12 +91,17 @@ const styles = StyleSheet.create({
   dropMenu: {
     borderWidth: 1,
     borderColor: 'grey',
+    borderRadius: 2,
     marginBottom: 5,
-    overflow: 'scroll'
+    maxHeight: 200
   },
   dropItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 20,
+    backgroundColor: '#e3e3e3',
     height: 40
-  }
+  },
+  itemName: {},
+  itemDescription: {}
 });
