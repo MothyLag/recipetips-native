@@ -4,7 +4,6 @@ export const GET_USER_DESPENSAS = gql`
   {
     getUserDespensas {
       name
-      items
     }
   }
 `;

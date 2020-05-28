@@ -9,12 +9,12 @@ const httpLink = createHttpLink({
   uri: 'https://recipetips.herokuapp.com/'
 });
 
-const authLink = setContext((_: any, { headers }: any) => {
-  const token = AsyncStorage.getItem('token').then(res => res);
+const authLink = setContext(async (_: any, { headers }: any) => {
+  const token = await AsyncStorage.getItem('token');
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : ''
+      token: token ? `Bearer ${token}` : ''
     }
   };
 });

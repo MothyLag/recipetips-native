@@ -1,4 +1,5 @@
+import { IDespensaItem } from './createDespensaForm.types';
 export const createDespensaValues = {
   name: '',
-  items: []
+  items: ([] as unknown) as IDespensaItem[]
 };
